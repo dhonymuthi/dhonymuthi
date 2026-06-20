@@ -85,7 +85,9 @@ function updateJamDanTanggal() {
     const jam = String(sekarang.getHours()).padStart(2, '0');
     const menit = String(sekarang.getMinutes()).padStart(2, '0');
     const detik = String(sekarang.getSeconds()).padStart(2, '0');
-    document.getElementById('jam-info').innerText = `${jam}:${menit}:${detik} WIB`;
+    
+    const elJam = document.getElementById('jam-info');
+    if (elJam) elJam.innerText = `${jam}:${menit}:${detik} WIB`;
 
     const opsiMasehi = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
     const tglMasehi = sekarang.toLocaleDateString('id-ID', opsiMasehi);
@@ -98,7 +100,7 @@ function updateJamDanTanggal() {
     const bulanJawa = ["Sura", "Sapar", "Mulud", "Bakda Mulud", "Jumadil Awal", "Jumadil Akhir", "Rajab", "Ruwah", "Pasa", "Sawal", "Sela", "Besar"];
     
     let day = sekarang.getDate();
-    let month = shadowMonth = sekarang.getMonth() + 1;
+    let month = sekarang.getMonth() + 1;
     let year = sekarang.getFullYear();
 
     if (month < 3) {
@@ -126,15 +128,23 @@ function updateJamDanTanggal() {
 
     const bulanHijriah = ["Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir", "Jumadil Awal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadhan", "Syawal", "Dzulqa'dah", "Dzulhijjah"];
 
-    document.getElementById('kalender-masehi-jawa').innerText = `${tglMasehi} (${pasaranHariIni})`;
-    document.getElementById('kalender-hijriah').innerText = `${dH} ${bulanHijriah[mH-1]} ${yH} H / ${dH} ${bulanJawa[mH-1]} ${yH + 512} AJ`;
+    const elMasehi = document.getElementById('kalender-masehi-jawa');
+    const elHijriah = document.getElementById('kalender-hijriah');
+    
+    if (elMasehi) elMasehi.innerText = `${tglMasehi} (${pasaranHariIni})`;
+    if (elHijriah) elHijriah.innerText = `${dH} ${bulanHijriah[mH-1]} ${yH} H / ${dH} ${bulanJawa[mH-1]} ${yH + 512} AJ`;
 }
 
 window.onload = function() {
     const savedUser = localStorage.getItem('user_harum_session');
     if (savedUser) {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('main-app').style.display = 'block';
+        // Cek apakah elemen utama ada sebelum mengubah displaynya
+        const mainApp = document.getElementById('main-app');
+        const loginScreen = document.getElementById('login-screen');
+        if (mainApp && loginScreen) {
+            loginScreen.style.display = 'none';
+            mainApp.style.display = 'block';
+        }
     }
     updateJamDanTanggal();
     setInterval(updateJamDanTanggal, 1000);
