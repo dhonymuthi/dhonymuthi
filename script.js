@@ -24,10 +24,10 @@ function kirimPendaftaranAdmin() {
     }
 
     // Menyusun teks template pendaftaran untuk Admin
-    const pesan teks = `Assalamualaikum Admin HARUM,\n\nSaya ingin mendaftar ke Aplikasi Web HARUM Malang.\n\nBerikut data saya:\n- *Nama lengkap* : ${nama}\n- *No. WhatsApp* : ${wa}\n- *Angkatan* : ${angkatan}\n\nMohon diverifikasi dan minta password masuk aplikasinya. Terima kasih.`;
+    const pesanTeks = `Assalamualaikum Admin HARUM,\n\nSaya ingin mendaftar ke Aplikasi Web HARUM Malang.\n\nBerikut data saya:\n- *Nama lengkap* : ${nama}\n- *No. WhatsApp* : ${wa}\n- *Angkatan* : ${angkatan}\n\nMohon diverifikasi dan minta password masuk aplikasinya. Terima kasih.`;
     
     // Encode teks agar aman dikirim via URL link WA
-    const urlWA = `https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${encodeURIComponent(pesan)}`;
+    const urlWA = `https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${encodeURIComponent(pesanTeks)}`;
     
     // Buka aplikasi WhatsApp ke chat Admin
     window.open(urlWA, '_blank');
@@ -98,7 +98,7 @@ function updateJamDanTanggal() {
     const bulanJawa = ["Sura", "Sapar", "Mulud", "Bakda Mulud", "Jumadil Awal", "Jumadil Akhir", "Rajab", "Ruwah", "Pasa", "Sawal", "Sela", "Besar"];
     
     let day = sekarang.getDate();
-    let month = sekarang.getMonth() + 1;
+    let month = shadowMonth = sekarang.getMonth() + 1;
     let year = sekarang.getFullYear();
 
     if (month < 3) {
