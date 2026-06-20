@@ -9,31 +9,54 @@
 <body>
 
     <div id="login-screen">
-        <div class="login-box">
+        <div class="login-box" id="box-login">
             <div class="logo-container">
                 <div class="logo-placeholder">
                     <img src="Penghapusan Pintar (1).jpg" alt="Logo HARUM" onerror="this.src='https://via.placeholder.com/120?text=HARUM'">
                 </div>
             </div>
             <h2>Login Anggota HARUM</h2>
-            <p class="login-subtitle">Khusus Anggota Resmi Grup WA HARUM Malang.</p>
+            <p class="login-subtitle">Masukkan Nomor WA dan Password Grup Anda.</p>
             
             <div class="form-group">
-                <label for="username">Nama Lengkap</label>
-                <input type="text" id="username" placeholder="Masukkan nama Anda">
+                <label for="login-whatsapp">Nomor WhatsApp</label>
+                <input type="text" id="login-whatsapp" placeholder="Contoh: 08123456xxx">
             </div>
             <div class="form-group">
-                <label for="whatsapp">Nomor WhatsApp</label>
-                <input type="text" id="whatsapp" placeholder="Contoh: 08123456xxx">
-            </div>
-            <div class="form-group">
-                <label for="grouppass">Password Khusus Grup WA</label>
-                <input type="password" id="grouppass" placeholder="Masukkan password grup">
+                <label for="login-password">Password Khusus Grup WA</label>
+                <input type="password" id="login-password" placeholder="Masukkan password grup">
             </div>
             <button class="btn" onclick="prosesLogin()">Masuk Aplikasi</button>
             
-            <p class="login-footer-text">Belum gabung grup atau lupa password?</p>
-            <button class="btn wa-btn" onclick="bukaGrupWA()">Cek Deskripsi Grup WA</button>
+            <p class="login-footer-text">Belum terdaftar atau belum punya password?</p>
+            <button class="btn wa-btn" style="background-color: #3498db;" onclick="tampilkanFormDaftar(true)">Daftar Jadi Anggota</button>
+        </div>
+
+        <div class="login-box" id="box-daftar" style="display: none;">
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <img src="Penghapusan Pintar (1).jpg" alt="Logo HARUM" onerror="this.src='https://via.placeholder.com/120?text=HARUM'">
+                </div>
+            </div>
+            <h2>Pendaftaran Anggota</h2>
+            <p class="login-subtitle">Data Anda akan dikirimkan ke WhatsApp Admin untuk diverifikasi.</p>
+            
+            <div class="form-group">
+                <label for="daftar-nama">Nama Lengkap</label>
+                <input type="text" id="daftar-nama" placeholder="Masukkan nama lengkap">
+            </div>
+            <div class="form-group">
+                <label for="daftar-whatsapp">Nomor WhatsApp Anda</label>
+                <input type="text" id="daftar-whatsapp" placeholder="Contoh: 08123456xxx">
+            </div>
+            <div class="form-group">
+                <label for="daftar-angkatan">Tahun Angkatan / Lulus</label>
+                <input type="text" id="daftar-angkatan" placeholder="Contoh: 2018">
+            </div>
+            <button class="btn wa-btn" onclick="kirimPendaftaranAdmin()">Kirim Data ke WA Admin</button>
+            
+            <p class="login-footer-text">Sudah punya password?</p>
+            <button class="btn" style="background-color: #7f8c8d;" onclick="tampilkanFormDaftar(false)">Kembali ke Login</button>
         </div>
     </div>
 
@@ -66,7 +89,7 @@
 
         <main>
             <div id="beranda" class="page active">
-                <h2>Selamat Datang, <span id="nama-user">Anggota</span>!</h2>
+                <h2>Selamat Datang di Aplikasi HARUM!</h2>
                 <p>Aplikasi ini dirancang sebagai wadah komunikasi, informasi, dan transparansi keuangan bagi seluruh alumni Pondok Pesantren Roudlotul Ulum yang berada di wilayah Malang (HARUM).</p>
                 <div class="card">
                     <h3>Pemberitahuan Terkini</h3>
